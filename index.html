@@ -71,15 +71,18 @@
     border-bottom: 1px solid rgba(0,229,204,0.08);
   }
   .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #fff 30%, var(--teal));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
   }
-  .logo span { color: var(--teal); -webkit-text-fill-color: var(--teal); }
+  .logo img {
+    display: block;
+    width: auto;
+    height: 44px;
+  }
+  footer .logo img {
+    height: 34px;
+  }
   .nav-links {
     display: flex;
     gap: 36px;
@@ -880,7 +883,7 @@
     background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(0,60,255,0.08), transparent);
   }
 
-  .vision-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+  .vision-inner { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; }
   .vision-inner p {
     font-size: 1.1rem;
     color: var(--text-dim);
@@ -891,29 +894,184 @@
 
   .ss-map-wrap {
     position: relative;
-    margin: 50px auto 0;
-    max-width: 700px;
+    margin: 36px auto 0;
+    max-width: 595px;
     width: 100%;
-    background: rgba(2,10,28,0.7);
-    border: 1px solid rgba(0,229,204,0.12);
+    aspect-ratio: 1 / 1;
+    background:
+      radial-gradient(circle at 25% 22%, rgba(0,170,210,0.18), transparent 34%),
+      linear-gradient(180deg, rgba(4,20,42,0.95) 0%, rgba(2,10,28,0.98) 100%);
+    border: 1px solid rgba(0,229,204,0.15);
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 0 60px rgba(0,229,204,0.08), 0 30px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 0 80px rgba(0,229,204,0.1), 0 30px 60px rgba(0,0,0,0.5);
+  }
+  .ss-map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+  }
+  .ss-map-container svg,
+  .ss-map-container img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .ss-map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: brightness(0.88) contrast(1.08);
+  }
+  .ss-globe-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 72% 34%, rgba(0,229,204,0.14), transparent 16%),
+      radial-gradient(circle at 62% 42%, rgba(0,153,255,0.12), transparent 20%),
+      radial-gradient(circle at 30% 18%, rgba(0,170,210,0.18), transparent 28%),
+      linear-gradient(180deg, rgba(5,20,42,0.98) 0%, rgba(2,9,24,1) 100%);
+  }
+  .ss-globe-orbit {
+    position: absolute;
+    inset: 6% 7% 8% 9%;
+    border-radius: 50%;
+    border: 1.5px solid rgba(118, 234, 255, 0.18);
+    background:
+      radial-gradient(circle at 34% 28%, rgba(170, 244, 255, 0.18), transparent 24%),
+      radial-gradient(circle at 58% 43%, rgba(72, 232, 255, 0.22), transparent 24%),
+      radial-gradient(circle at 46% 54%, rgba(0, 229, 204, 0.26), transparent 34%),
+      radial-gradient(circle at 42% 44%, rgba(7, 79, 118, 1), rgba(2, 14, 32, 1) 68%);
+    box-shadow:
+      inset -150px -140px 190px rgba(0,0,0,0.58),
+      inset 65px 40px 140px rgba(105,227,255,0.12),
+      inset 0 0 60px rgba(65, 200, 255, 0.08),
+      0 0 0 1px rgba(80, 220, 255, 0.08),
+      0 0 120px rgba(0, 187, 255, 0.18);
+    overflow: hidden;
+  }
+  .ss-globe-orbit::before,
+  .ss-globe-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .ss-globe-orbit::before {
+    background:
+      repeating-linear-gradient(90deg, transparent 0 7%, rgba(110,230,255,0.12) 7.2% 7.5%, transparent 7.8% 15%),
+      repeating-linear-gradient(180deg, transparent 0 10%, rgba(110,230,255,0.09) 10.2% 10.5%, transparent 10.8% 20%);
+    opacity: 0.42;
+    transform: scaleX(1.08) scaleY(0.94);
+  }
+  .ss-globe-orbit::after {
+    inset: 12% 10% 10% 18%;
+    border: 1px solid rgba(117, 236, 255, 0.12);
+    border-radius: 50%;
+    filter: blur(0.2px);
+  }
+  .ss-globe-continent {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(89, 232, 255, 0.36), rgba(0, 229, 204, 0.18));
+    clip-path: polygon(56% 18%, 61% 17%, 67% 21%, 72% 28%, 76% 35%, 76% 45%, 74% 54%, 72% 63%, 68% 69%, 65% 73%, 60% 77%, 56% 80%, 53% 78%, 50% 73%, 47% 67%, 46% 58%, 47% 49%, 49% 40%, 51% 31%);
+    opacity: 0.9;
+    box-shadow: inset 0 0 0 1px rgba(210,249,255,0.12);
+    filter: drop-shadow(0 0 16px rgba(0,229,204,0.22));
+  }
+  .ss-globe-country {
+    position: absolute;
+    left: 56.8%;
+    top: 42.6%;
+    width: 9.5%;
+    height: 11%;
+    background: linear-gradient(180deg, rgba(173,255,249,0.95), rgba(0,229,204,0.75));
+    clip-path: polygon(28% 6%, 55% 0%, 81% 18%, 100% 43%, 89% 76%, 62% 100%, 30% 90%, 0% 64%, 7% 29%);
+    border: 1px solid rgba(227,255,255,0.5);
+    box-shadow: 0 0 18px rgba(0,229,204,0.38);
+  }
+  .ss-globe-focus {
+    position: absolute;
+    width: 22%;
+    height: 22%;
+    left: 52%;
+    top: 38%;
+    border-radius: 50%;
+    border: 1px solid rgba(0,229,204,0.28);
+    box-shadow:
+      0 0 0 18px rgba(0,229,204,0.03),
+      0 0 0 42px rgba(0,229,204,0.02),
+      inset 0 0 18px rgba(0,229,204,0.1);
+  }
+  .ss-globe-focus::before,
+  .ss-globe-focus::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .ss-globe-focus::before {
+    width: 16px;
+    height: 16px;
+    background: #00e5cc;
+    box-shadow: 0 0 20px rgba(0,229,204,0.9);
+  }
+  .ss-globe-focus::after {
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(0,229,204,0.28);
+  }
+  .ss-globe-callout {
+    position: absolute;
+    left: 63%;
+    top: 35%;
+    padding: 8px 12px;
+    border: 1px solid rgba(120, 240, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(4, 18, 37, 0.78);
+    color: rgba(207, 250, 255, 0.94);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.28);
+    white-space: nowrap;
   }
   #ssMapCanvas {
-    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     width: 100%;
-    height: auto;
+    height: 100%;
+    pointer-events: none;
+  }
+  #visionGlobeCanvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
   .ss-map-label {
     position: absolute;
-    bottom: 16px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(0,229,204,0.4);
+    color: rgba(0,229,204,0.35);
     white-space: nowrap;
   }
 
@@ -1054,7 +1212,9 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Wew<span>.</span>Co</div>
+  <div class="logo">
+    <img src="wewco-hor-blue.png" alt="Wew Co." />
+  </div>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#how">How it works</a></li>
@@ -1289,10 +1449,12 @@
   <div class="vision-inner">
     <div class="section-label reveal" style="justify-content:center">Vision</div>
     <h2 class="reveal">The future of money<br>in <span class="accent">South Sudan</span></h2>
-    <p class="reveal">Wew Co. is building the financial infrastructure for a connected, cash-light future — where every person has access to fast, affordable, and trusted financial services.</p>
+    <p class="reveal">Wew Co. is building the financial infrastructure for a connected, cash-light future where every person has access to fast, affordable, and trusted financial services.</p>
     <div class="ss-map-wrap reveal">
-      <canvas id="ssMapCanvas"></canvas>
-      <div class="ss-map-label">South Sudan — Money Network</div>
+      <div class="ss-map-container" id="ssMapContainer">
+        <canvas id="visionGlobeCanvas" aria-hidden="true"></canvas>
+      </div>
+      <div class="ss-map-label">South Sudan - Zoomed Globe Network</div>
     </div>
   </div>
 </section>
@@ -1319,7 +1481,9 @@
 </section>
 
 <footer>
-  <div class="logo" style="font-size:1rem">Wew<span>.</span>Co</div>
+  <div class="logo">
+    <img src="wewco-hor-blue.png" alt="Wew Co." />
+  </div>
   <span>© 2025 Wew Co. All rights reserved.</span>
   <span>Made for South Sudan & the world 🌍</span>
 </footer>
@@ -1434,7 +1598,10 @@ document.querySelectorAll('.feature-card').forEach(card => {
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js', () => {
       fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
         .then(r => r.json())
-        .then(world => buildGlobe(world));
+        .then(world => {
+          buildGlobe(world);
+          buildVisionGlobe(world);
+        });
     });
   });
 
@@ -1857,101 +2024,231 @@ document.querySelectorAll('.feature-card').forEach(card => {
 
     draw();
   }
+
+  function buildVisionGlobe(world) {
+    const canvas = document.getElementById('visionGlobeCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const countries = topojson.feature(world, world.objects.countries);
+    const borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+    const southSudan = countries.features.find(feature => +feature.id === 728);
+
+    const cityPoints = [
+      { name: 'Juba', lat: 4.85, lon: 31.58, main: true },
+      { name: 'Wau', lat: 7.70, lon: 27.99 },
+      { name: 'Malakal', lat: 9.53, lon: 31.66 },
+      { name: 'Rumbek', lat: 6.81, lon: 29.68 },
+      { name: 'Bor', lat: 6.21, lon: 31.56 },
+      { name: 'Bentiu', lat: 9.23, lon: 29.80 },
+      { name: 'Aweil', lat: 8.77, lon: 27.40 },
+      { name: 'Yambio', lat: 4.57, lon: 28.40 },
+      { name: 'Torit', lat: 4.41, lon: 32.57 },
+      { name: 'Kuajok', lat: 8.30, lon: 27.99 },
+      { name: 'Renk', lat: 11.74, lon: 32.80 },
+    ];
+
+    let W = 0;
+    let H = 0;
+    const rotX = -7;
+    const rotY = 31.5;
+
+    function resize() {
+      W = canvas.parentNode.offsetWidth || 800;
+      H = canvas.parentNode.offsetHeight || W;
+      canvas.width = W;
+      canvas.height = H;
+    }
+
+    function makeProjection() {
+      return d3.geoOrthographic()
+        .scale(Math.min(W, H) * 3.35)
+        .translate([W * 0.57, H * 1.36])
+        .rotate([-rotY, -rotX, 0])
+        .clipAngle(90);
+    }
+
+    function isVisible(lon, lat) {
+      const toRad = d => d * Math.PI / 180;
+      const camLon = rotY;
+      const camLat = -rotX;
+      const dLon = toRad(lon - camLon);
+      const lat1 = toRad(lat);
+      const lat2 = toRad(camLat);
+      return Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(dLon);
+    }
+
+    function drawVision() {
+      ctx.clearRect(0, 0, W, H);
+
+      const proj = makeProjection();
+      const path = d3.geoPath(proj, ctx);
+      const globeRadius = Math.min(W, H) * 3.35;
+
+      ctx.beginPath();
+      path({ type: 'Sphere' });
+      const oceanGrad = ctx.createRadialGradient(W * 0.49, H * 1.02, 0, W * 0.57, H * 1.36, globeRadius);
+      oceanGrad.addColorStop(0, 'rgba(10,40,78,1)');
+      oceanGrad.addColorStop(0.55, 'rgba(4,20,42,1)');
+      oceanGrad.addColorStop(1, 'rgba(1,10,24,1)');
+      ctx.fillStyle = oceanGrad;
+      ctx.fill();
+
+      const graticule = d3.geoGraticule().step([10, 10])();
+      ctx.beginPath();
+      path(graticule);
+      ctx.strokeStyle = 'rgba(110,230,255,0.12)';
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+
+      countries.features.forEach(feature => {
+        let fillColor = 'rgba(10, 76, 112, 0.45)';
+        if (+feature.id === 728) fillColor = 'rgba(0,229,204,0.88)';
+        else if ([404,800,706,231,729,834].includes(+feature.id)) fillColor = 'rgba(0,160,190,0.42)';
+        ctx.beginPath();
+        path(feature);
+        ctx.fillStyle = fillColor;
+        ctx.fill();
+      });
+
+      ctx.beginPath();
+      path(borders);
+      ctx.strokeStyle = 'rgba(195,245,255,0.20)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+
+      if (southSudan) {
+        ctx.save();
+        ctx.beginPath();
+        path(southSudan);
+        ctx.strokeStyle = 'rgba(235,250,255,0.96)';
+        ctx.lineWidth = 2.2;
+        ctx.shadowColor = 'rgba(220,245,255,0.95)';
+        ctx.shadowBlur = 16;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      const juba = cityPoints[0];
+      cityPoints.forEach(city => {
+        if (city === juba) return;
+        if (isVisible(city.lon, city.lat) < 0.18) return;
+        const from = proj([juba.lon, juba.lat]);
+        const to = proj([city.lon, city.lat]);
+        if (!from || !to) return;
+        const mx = (from[0] + to[0]) / 2 - (to[1] - from[1]) * 0.12;
+        const my = (from[1] + to[1]) / 2 + (to[0] - from[0]) * 0.12;
+        ctx.beginPath();
+        ctx.moveTo(from[0], from[1]);
+        ctx.quadraticCurveTo(mx, my, to[0], to[1]);
+        ctx.strokeStyle = city.main ? 'rgba(245,252,255,0.68)' : 'rgba(186,232,255,0.52)';
+        ctx.lineWidth = city.main ? 1.8 : 1.4;
+        ctx.setLineDash([5, 7]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const spark = 0.5 + 0.5 * Math.sin((Date.now() * 0.0016) + city.lon);
+        const px = from[0] * (1 - spark) * (1 - spark) + 2 * (1 - spark) * spark * mx + spark * spark * to[0];
+        const py = from[1] * (1 - spark) * (1 - spark) + 2 * (1 - spark) * spark * my + spark * spark * to[1];
+        ctx.beginPath();
+        ctx.arc(px, py, 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(245,252,255,0.96)';
+        ctx.shadowColor = 'rgba(186,232,255,0.95)';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      cityPoints.forEach(city => {
+        const visibility = isVisible(city.lon, city.lat);
+        if (visibility < 0.14) return;
+        const pt = proj([city.lon, city.lat]);
+        if (!pt) return;
+
+        ctx.save();
+        ctx.globalAlpha = Math.min(1, (visibility - 0.14) / 0.4);
+        ctx.beginPath();
+        ctx.arc(pt[0], pt[1], city.main ? 6 : 3.8, 0, Math.PI * 2);
+        ctx.fillStyle = city.main ? '#f5fcff' : '#b6ecff';
+        ctx.shadowColor = city.main ? '#f5fcff' : '#b6ecff';
+        ctx.shadowBlur = city.main ? 18 : 10;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        if (city.main) {
+          ctx.beginPath();
+          ctx.arc(pt[0], pt[1], 15, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(245,252,255,0.28)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+
+        ctx.font = city.main ? 'bold 12px Syne, sans-serif' : '10px DM Sans, sans-serif';
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(city.name, pt[0] + 10, pt[1] - 10);
+        ctx.restore();
+      });
+
+      const jubaPt = proj([juba.lon, juba.lat]);
+      if (jubaPt) {
+        ctx.beginPath();
+        ctx.arc(jubaPt[0], jubaPt[1], 32, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0,229,204,0.14)';
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      path({ type: 'Sphere' });
+      ctx.strokeStyle = 'rgba(0,229,204,0.22)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    let visionFrame = 0;
+    function animateVision() {
+      drawVision();
+      visionFrame = requestAnimationFrame(animateVision);
+    }
+
+    resize();
+    animateVision();
+    window.addEventListener('resize', () => {
+      resize();
+      drawVision();
+    });
+  }
 })();
 
-/* ── SOUTH SUDAN MAP ─────────────────────────── */
+/* ── SOUTH SUDAN MAP ANIMATION ─────────────────────────── */
 (function() {
   const canvas = document.getElementById('ssMapCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-
-  const W = 700, H = 460;
-  canvas.width = W; canvas.height = H;
-
-  // ── Projection: map real lon/lat to canvas pixels
-  // South Sudan bounding box (from reference map):
-  // lon: 23.5 (far west) → 35.9 (far east Upper Nile)
-  // lat: 3.4  (south, Uganda border) → 12.2 (north, Sudan border)
-  const LON_MIN = 23.3, LON_MAX = 36.2;
-  const LAT_MIN = 3.2,  LAT_MAX = 12.4;
-  const PAD_L = 38, PAD_R = 38, PAD_T = 28, PAD_B = 36;
-
-  function proj(lon, lat) {
-    const x = PAD_L + ((lon - LON_MIN) / (LON_MAX - LON_MIN)) * (W - PAD_L - PAD_R);
-    const y = (H - PAD_B) - ((lat - LAT_MIN) / (LAT_MAX - LAT_MIN)) * (H - PAD_T - PAD_B);
-    return [x, y];
-  }
-
-  // ── Carefully traced border from reference image (lon, lat)
-  // Starting from NW corner, going clockwise
-  const ssBorder = [
-    // North border (top) — Sudan boundary, left to right
-    [24.1, 10.1],[24.3, 10.5],[24.5, 11.0],[24.5, 11.3],
-    // West Bahr el Ghazal bulge (upper-left lobe)
-    [24.1, 11.4],[23.6, 11.5],[23.5, 11.1],[23.6, 10.6],[23.7, 10.2],
-    [23.8, 9.8], [23.6, 9.4], [23.7, 9.0], [24.0, 8.7], [24.0, 8.2],
-    [24.1, 7.8], [24.3, 7.5],
-    // CAR boundary (west side going south)
-    [24.1, 7.1], [24.0, 6.6], [24.2, 6.2], [24.4, 5.8], [24.6, 5.4],
-    [24.9, 5.1], [25.2, 4.8], [25.4, 4.6],
-    // South-west corner (DRC boundary)
-    [25.8, 4.3], [26.2, 4.1], [26.6, 3.9], [27.0, 3.8],
-    [27.5, 3.8], [28.0, 3.7], [28.4, 3.6],
-    // Bottom border (Uganda / DRC) going east
-    [28.8, 3.5], [29.3, 3.5], [29.7, 3.6], [30.0, 3.7],
-    [30.4, 3.6], [30.7, 3.5], [31.1, 3.5],
-    // South-east corner (Uganda / Kenya boundary)
-    [31.5, 3.6], [31.9, 3.7], [32.2, 3.8], [32.5, 4.0],
-    [32.9, 4.0], [33.4, 3.8], [33.7, 4.0],
-    // East boundary going north (Kenya / Ethiopia)
-    [34.0, 4.3], [34.2, 4.8], [34.3, 5.4], [34.2, 5.9],
-    [34.0, 6.4], [33.9, 6.9], [34.1, 7.4], [34.4, 7.8],
-    [34.6, 8.2], [34.6, 8.7], [34.4, 9.1], [34.3, 9.5],
-    [34.1, 9.8],
-    // Upper Nile protrusion (north-east)
-    [34.3,10.2], [34.5,10.5], [35.0,10.8], [35.5,11.0],
-    [35.9,11.1], [35.9,11.5], [35.5,11.8], [35.0,11.9],
-    [34.5,11.8], [34.1,11.6], [33.8,11.4], [33.5,11.5],
-    [33.2,11.8], [32.9,12.0], [32.5,12.1], [32.1,12.2],
-    [31.7,12.1], [31.3,11.9],
-    // Abyei notch / indentation at top-center
-    [30.9,11.8], [30.7,12.0], [30.5,12.1], [30.2,12.0],
-    [29.9,11.8], [29.7,11.9], [29.5,12.1], [29.2,12.0],
-    [28.9,11.7], [28.6,11.5], [28.3,11.6], [28.0,11.8],
-    [27.7,12.0], [27.3,11.9], [27.0,11.6], [26.7,11.4],
-    [26.3,11.4], [26.0,11.5], [25.7,11.7], [25.4,11.8],
-    [25.1,11.7], [24.8,11.5], [24.6,11.3],
-    [24.5,11.0],[24.3,10.5],[24.1,10.1],
-  ];
-
-  // ── Cities — positions traced directly from reference map
+  // City anchors cluster around the South Sudan region on the close-up globe.
   const cities = [
-    { name: 'Juba',     lon: 31.62, lat: 4.85,  main: true,  labelPos: 'top'   },
-    { name: 'Wau',      lon: 27.98, lat: 7.72,  main: false, labelPos: 'right' },
-    { name: 'Malakal',  lon: 31.70, lat: 9.55,  main: false, labelPos: 'right' },
-    { name: 'Rumbek',   lon: 29.70, lat: 6.82,  main: false, labelPos: 'right' },
-    { name: 'Bor',      lon: 31.55, lat: 6.22,  main: false, labelPos: 'right' },
-    { name: 'Bentiu',   lon: 29.85, lat: 9.20,  main: false, labelPos: 'right' },
-    { name: 'Aweil',    lon: 27.40, lat: 8.78,  main: false, labelPos: 'right' },
-    { name: 'Yambio',   lon: 28.42, lat: 4.58,  main: false, labelPos: 'left'  },
-    { name: 'Torit',    lon: 32.57, lat: 4.42,  main: false, labelPos: 'right' },
-    { name: 'Yei',      lon: 30.68, lat: 4.10,  main: false, labelPos: 'left'  },
-    { name: 'Kuajok',   lon: 28.08, lat: 8.38,  main: false, labelPos: 'right' },
-    { name: 'Renk',     lon: 32.78, lat: 11.83, main: false, labelPos: 'right' },
-    { name: 'Pibor',    lon: 33.13, lat: 6.80,  main: false, labelPos: 'right' },
+    { name: 'Juba',    x: 1170, y: 1090, main: true  },
+    { name: 'Wau',     x: 930,  y: 980,  main: false },
+    { name: 'Malakal', x: 1215, y: 820,  main: false },
+    { name: 'Rumbek',  x: 1055, y: 1035, main: false },
+    { name: 'Bor',     x: 1178, y: 990,  main: false },
+    { name: 'Bentiu',  x: 1050, y: 860,  main: false },
+    { name: 'Aweil',   x: 870,  y: 900,  main: false },
+    { name: 'Yambio',  x: 930,  y: 1165, main: false },
+    { name: 'Torit',   x: 1278, y: 1125, main: false },
+    { name: 'Kuajok',  x: 965,  y: 935,  main: false },
+    { name: 'Renk',    x: 1255, y: 665,  main: false },
   ];
 
-  // ── Money flow connections between cities
   const connections = [
-    [0,4],[0,3],[0,7],[0,9],[0,8],   // Juba hub
-    [1,6],[1,10],[1,3],              // Wau hub
-    [2,11],[2,5],[2,4],              // Malakal hub
-    [3,4],[3,5],[5,6],               // central connections
-    [4,12],[7,9],[8,9],              // east/south links
-    [10,6],[10,1],                   // Kuajok links
+    [0,4],[0,3],[0,7],[0,8],[0,1],[0,2],
+    [1,6],[1,9],[1,3],
+    [2,10],[2,5],[2,4],
+    [3,4],[3,5],[5,9],[6,9],
   ];
 
-  // ── Particles
   const particles = [];
   connections.forEach(([from, to], i) => {
     for (let k = 0; k < 2; k++) {
@@ -1963,227 +2260,64 @@ document.querySelectorAll('.feature-card').forEach(card => {
     }
   });
 
-  let tick = 0;
-
   function quadMid(ax, ay, bx, by) {
-    // Perpendicular offset for curve — shorter distance = less lift
-    const dist = Math.sqrt((bx-ax)**2+(by-ay)**2);
-    const lift = Math.min(dist * 0.28, 40);
-    const mx = (ax+bx)/2 + (ay-by)/dist * lift;
-    const my = (ay+by)/2 + (bx-ax)/dist * lift;
-    return [mx, my];
+    const dx = bx-ax, dy = by-ay, len = Math.sqrt(dx*dx+dy*dy);
+    const lift = Math.min(len * 0.22, 90);
+    return [(ax+bx)/2 - (dy/len)*lift, (ay+by)/2 + (dx/len)*lift];
   }
-
   function quadPt(ax, ay, cx, cy, bx, by, t) {
-    return [
-      (1-t)**2*ax + 2*(1-t)*t*cx + t**2*bx,
-      (1-t)**2*ay + 2*(1-t)*t*cy + t**2*by,
-    ];
+    return [(1-t)**2*ax+2*(1-t)*t*cx+t**2*bx, (1-t)**2*ay+2*(1-t)*t*cy+t**2*by];
   }
 
+  let tick = 0;
   function draw() {
     tick += 0.015;
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // ── Deep background ──
-    const bg = ctx.createRadialGradient(W/2, H/2, 40, W/2, H/2, W*0.75);
-    bg.addColorStop(0, '#021018');
-    bg.addColorStop(1, '#010810');
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, W, H);
-
-    // Helper to draw the clipping border path
-    function borderPath() {
+    // Arc lines
+    connections.forEach(([from, to], i) => {
+      const a = cities[from], b = cities[to];
+      const [cx2, cy2] = quadMid(a.x, a.y, b.x, b.y);
+      const alpha = 0.07 + 0.12 * (0.5 + 0.5 * Math.sin(tick * 1.1 + i * 0.55));
       ctx.beginPath();
-      ssBorder.forEach(([lon, lat], i) => {
-        const [x, y] = proj(lon, lat);
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      });
-      ctx.closePath();
-    }
-
-    // ── Country fill ──
-    borderPath();
-    const fill = ctx.createLinearGradient(PAD_L, PAD_T, W - PAD_R, H - PAD_B);
-    fill.addColorStop(0,   'rgba(0,55,95,0.60)');
-    fill.addColorStop(0.4, 'rgba(0,70,105,0.55)');
-    fill.addColorStop(1,   'rgba(0,45,80,0.60)');
-    ctx.fillStyle = fill;
-    ctx.fill();
-
-    // ── Clipped interior details ──
-    ctx.save();
-    borderPath();
-    ctx.clip();
-
-    // Interior grid
-    for (let lon = 24; lon <= 36; lon += 1) {
-      const [x0, y0] = proj(lon, LAT_MIN);
-      const [x1, y1] = proj(lon, LAT_MAX);
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1);
-      ctx.strokeStyle = 'rgba(0,120,200,0.055)'; ctx.lineWidth = 0.5; ctx.stroke();
-    }
-    for (let lat = 4; lat <= 12; lat += 1) {
-      const [x0, y0] = proj(LON_MIN, lat);
-      const [x1, y1] = proj(LON_MAX, lat);
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1);
-      ctx.strokeStyle = 'rgba(0,120,200,0.055)'; ctx.lineWidth = 0.5; ctx.stroke();
-    }
-
-    // White Nile (traced from map — flows N through center)
-    const nileCoords = [
-      [32.06,3.65],[31.85,4.0],[31.62,4.85],[31.52,5.4],
-      [31.50,6.2], [31.48,6.9],[31.55,7.6],[31.70,8.3],
-      [31.80,9.0],[31.70,9.55],[31.85,10.3],[32.2,11.0],[32.78,11.83],
-    ];
-    ctx.beginPath();
-    nileCoords.forEach(([lon, lat], i) => {
-      const [x, y] = proj(lon, lat);
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    });
-    ctx.strokeStyle = 'rgba(0,160,230,0.28)';
-    ctx.lineWidth = 2.5;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    ctx.stroke();
-
-    // ── Connection arc lines ──
-    connections.forEach(([from, to]) => {
-      const [ax, ay] = proj(cities[from].lon, cities[from].lat);
-      const [bx, by] = proj(cities[to].lon,   cities[to].lat);
-      const [cx2, cy2] = quadMid(ax, ay, bx, by);
-      ctx.beginPath();
-      ctx.moveTo(ax, ay);
-      ctx.quadraticCurveTo(cx2, cy2, bx, by);
-      ctx.strokeStyle = 'rgba(0,180,255,0.10)';
-      ctx.lineWidth = 1.2;
-      ctx.setLineDash([3, 6]);
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(cx2, cy2, b.x, b.y);
+      ctx.strokeStyle = `rgba(0,180,255,${alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 9]);
       ctx.stroke();
       ctx.setLineDash([]);
     });
 
-    ctx.restore(); // end clip
-
-    // ── Border stroke (on top, outside clip) ──
-    borderPath();
-    ctx.strokeStyle = 'rgba(0,229,204,0.65)';
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'round';
-    ctx.shadowBlur = 14;
-    ctx.shadowColor = 'rgba(0,229,204,0.35)';
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // ── Particles (drawn outside clip so they don't get cut) ──
+    // Particles
     particles.forEach(p => {
       p.t += p.speed;
       if (p.t >= 1) p.t = 0;
-      const [ax, ay] = proj(cities[p.from].lon, cities[p.from].lat);
-      const [bx, by] = proj(cities[p.to].lon,   cities[p.to].lat);
-      const [cx2, cy2] = quadMid(ax, ay, bx, by);
-      const [px2, py2] = quadPt(ax, ay, cx2, cy2, bx, by, p.t);
+      const a = cities[p.from], b = cities[p.to];
+      const [cx2, cy2] = quadMid(a.x, a.y, b.x, b.y);
+      const [px2, py2] = quadPt(a.x, a.y, cx2, cy2, b.x, b.y, p.t);
       const fade = Math.sin(Math.PI * p.t);
       ctx.beginPath();
-      ctx.arc(px2, py2, 2 + fade * 2.5, 0, Math.PI*2);
+      ctx.arc(px2, py2, 3 + fade * 4, 0, Math.PI*2);
       ctx.fillStyle = `rgba(0,229,204,${fade * 0.88})`;
-      ctx.shadowBlur = 10; ctx.shadowColor = '#00e5cc';
+      ctx.shadowBlur = 16; ctx.shadowColor = '#00e5cc';
       ctx.fill(); ctx.shadowBlur = 0;
-      // soft trail halo
       ctx.beginPath();
-      ctx.arc(px2, py2, (2 + fade * 2.5) * 2.4, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(0,229,204,${fade * 0.10})`;
+      ctx.arc(px2, py2, (3 + fade * 4) * 2.2, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,229,204,${fade * 0.09})`;
       ctx.fill();
     });
 
-    // ── City dots & labels ──
-    cities.forEach((city, i) => {
-      const [x, y] = proj(city.lon, city.lat);
-      const pulse = 0.5 + 0.5 * Math.sin(tick * 2.2 + i * 0.9);
-
-      if (city.main) {
-        // Double pulse rings
-        [22, 14].forEach((r, ri) => {
-          ctx.beginPath();
-          ctx.arc(x, y, r + pulse * (ri === 0 ? 10 : 5), 0, Math.PI*2);
-          ctx.fillStyle = `rgba(0,229,204,${(0.055 - ri*0.02) * (1-pulse)})`;
-          ctx.fill();
-        });
-        ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI*2);
-        ctx.fillStyle = '#00e5cc';
-        ctx.shadowBlur = 22; ctx.shadowColor = '#00e5cc';
-        ctx.fill(); ctx.shadowBlur = 0;
-        ctx.beginPath(); ctx.arc(x, y, 11, 0, Math.PI*2);
-        ctx.strokeStyle = 'rgba(0,229,204,0.45)'; ctx.lineWidth = 1.5; ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(x, y, 7 + pulse * 3, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(0,153,255,${0.07*(1-pulse)})`; ctx.fill();
-        ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI*2);
-        ctx.fillStyle = '#0099ff';
-        ctx.shadowBlur = 10; ctx.shadowColor = '#0099ff';
-        ctx.fill(); ctx.shadowBlur = 0;
-      }
-
-      // Label
-      ctx.save();
-      ctx.font = city.main ? 'bold 11px Syne, sans-serif' : '8.5px DM Sans, sans-serif';
-      ctx.fillStyle = city.main ? '#00e5cc' : 'rgba(180,225,255,0.88)';
-      ctx.textBaseline = 'middle';
-      if (city.main) { ctx.shadowBlur = 10; ctx.shadowColor = '#00e5cc'; }
-      const gap = city.main ? 14 : 10;
-      if (city.labelPos === 'right') {
-        ctx.textAlign = 'left';
-        ctx.fillText(city.name, x + gap, y);
-      } else if (city.labelPos === 'left') {
-        ctx.textAlign = 'right';
-        ctx.fillText(city.name, x - gap, y);
-      } else { // top
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText(city.name, x, y - (city.main ? 13 : 9));
-      }
-      ctx.shadowBlur = 0;
-      ctx.restore();
+    // Juba pulse rings
+    const j = cities[0];
+    const pulse = 0.5 + 0.5 * Math.sin(tick * 2.5);
+    [40, 65, 90].forEach((r, i) => {
+      ctx.beginPath();
+      ctx.arc(j.x, j.y, r + pulse * (12 + i*5), 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(0,229,204,${(0.22 - i*0.06) * (1-pulse)})`;
+      ctx.lineWidth = 1.5 - i*0.4;
+      ctx.stroke();
     });
-
-    // ── Nile label ──
-    const [nlx, nly] = proj(31.25, 7.5);
-    ctx.save();
-    ctx.font = 'italic 8px DM Sans, sans-serif';
-    ctx.fillStyle = 'rgba(0,160,230,0.38)';
-    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    ctx.fillText('White Nile', nlx + 5, nly);
-    ctx.restore();
-
-    // ── Compass rose ──
-    const crx = W - 36, cry = 36;
-    ctx.save();
-    ctx.strokeStyle = 'rgba(0,229,204,0.3)'; ctx.fillStyle = 'rgba(0,229,204,0.4)';
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(crx, cry-13); ctx.lineTo(crx-4, cry+6); ctx.lineTo(crx+4, cry+6); ctx.closePath(); ctx.fill();
-    ctx.font = 'bold 8px Syne, sans-serif'; ctx.fillStyle = 'rgba(0,229,204,0.55)';
-    ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-    ctx.fillText('N', crx, cry - 15);
-    ctx.restore();
-
-    // ── Legend ──
-    ctx.save();
-    const lx = 14, ly = H - 56;
-    // capital
-    ctx.beginPath(); ctx.arc(lx+5, ly, 5, 0, Math.PI*2);
-    ctx.fillStyle = '#00e5cc'; ctx.shadowBlur = 8; ctx.shadowColor = '#00e5cc'; ctx.fill(); ctx.shadowBlur = 0;
-    ctx.font = '8px DM Sans, sans-serif'; ctx.fillStyle = 'rgba(0,229,204,0.45)';
-    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    ctx.fillText('Capital (Juba)', lx+14, ly);
-    // city
-    ctx.beginPath(); ctx.arc(lx+5, ly+16, 3.5, 0, Math.PI*2);
-    ctx.fillStyle = '#0099ff'; ctx.fill();
-    ctx.fillStyle = 'rgba(0,153,255,0.45)'; ctx.fillText('Major city', lx+14, ly+16);
-    // flow
-    ctx.strokeStyle = 'rgba(0,229,204,0.4)'; ctx.lineWidth = 1.5; ctx.setLineDash([3,4]);
-    ctx.beginPath(); ctx.moveTo(lx+1, ly+32); ctx.lineTo(lx+10, ly+32); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(0,229,204,0.4)'; ctx.fillText('Money flow', lx+14, ly+32);
-    ctx.restore();
 
     requestAnimationFrame(draw);
   }
@@ -2245,3 +2379,5 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
+
+
